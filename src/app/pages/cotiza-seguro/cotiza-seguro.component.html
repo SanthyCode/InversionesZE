@@ -1,0 +1,130 @@
+<section class="contact-section">
+  <div class="contact-container">
+    <!-- Left Side - Info -->
+    <div class="contact-info">
+      <h2>Cotiza Tu Seguro Todo Riesgo</h2>
+      <p class="subtitle">
+        Obtén la mejor cotización para tu vehículo con <strong>cobertura completa</strong>. 
+        Protege tu inversión con nuestros <strong>planes especializados</strong>.
+      </p>
+      
+      <div class="credit-highlight">
+        <h4>🛡️ Seguro Todo Riesgo Garantizado</h4>
+        <ul class="credit-features">
+          <li>✅ Cobertura <strong>completa para tu vehículo</strong></li>
+          <li>✅ Cotización <strong>personalizada según tu placa</strong></li>
+          <li>✅ <strong>Respuesta inmediata</strong> a través de WhatsApp</li>
+          <li>✅ <strong>Planes flexibles</strong> según tu presupuesto</li>
+          <li>✅ Protección integral contra accidentes y robo</li>
+        </ul>
+      </div>
+
+      <div class="info-items">
+        <div class="info-item">
+          <span class="info-icon">🛡️</span>
+          <div>
+            <h4>Cobertura Integral</h4>
+            <p>Protección completa para tu vehículo</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">📱</span>
+          <div>
+            <h4>Respuesta Rápida</h4>
+            <p>Cotización en minutos</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">⚡</span>
+          <div>
+            <h4>Proceso Simple</h4>
+            <p>Solo completa el formulario</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">💰</span>
+          <div>
+            <h4>Precios Competitivos</h4>
+            <p>Las mejores tasas del mercado</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Form -->
+    <div class="contact-form-wrapper">
+      <form [formGroup]="cotizaForm" (ngSubmit)="enviarFormulario()" class="contact-form">
+        <h3>Solicita Tu Cotización</h3>
+
+        <!-- Nombre Completo -->
+        <div class="form-group">
+          <label for="nombre">Nombre Completo *</label>
+          <input
+            type="text"
+            id="nombre"
+            formControlName="nombre"
+            placeholder="Tu nombre completo"
+            class="form-input"
+            [class.error]="cotizaForm.get('nombre')?.invalid && cotizaForm.get('nombre')?.touched"
+          />
+          <span class="error-message" *ngIf="cotizaForm.get('nombre')?.invalid && cotizaForm.get('nombre')?.touched">
+            Por favor ingresa tu nombre
+          </span>
+        </div>
+
+        <!-- Cédula -->
+        <div class="form-group">
+          <label for="cedula">Número de Cédula *</label>
+          <input
+            type="text"
+            id="cedula"
+            formControlName="cedula"
+            placeholder="Ej: 1234567890"
+            class="form-input"
+            [class.error]="cotizaForm.get('cedula')?.invalid && cotizaForm.get('cedula')?.touched"
+          />
+          <span class="error-message" *ngIf="cotizaForm.get('cedula')?.invalid && cotizaForm.get('cedula')?.touched">
+            Por favor ingresa tu número de cédula
+          </span>
+        </div>
+
+        <!-- Celular -->
+        <div class="form-group">
+          <label for="celular">Celular *</label>
+          <input
+            type="tel"
+            id="celular"
+            formControlName="celular"
+            placeholder="Ej: 3001234567"
+            class="form-input"
+            [class.error]="cotizaForm.get('celular')?.invalid && cotizaForm.get('celular')?.touched"
+          />
+          <span class="error-message" *ngIf="cotizaForm.get('celular')?.invalid && cotizaForm.get('celular')?.touched">
+            Por favor ingresa un celular válido
+          </span>
+        </div>
+
+        <!-- Placa del Vehículo -->
+        <div class="form-group">
+          <label for="placa">Placa del Vehículo *</label>
+          <input
+            type="text"
+            id="placa"
+            formControlName="placa"
+            placeholder="Ej: ABC-123"
+            class="form-input"
+            [class.error]="cotizaForm.get('placa')?.invalid && cotizaForm.get('placa')?.touched"
+          />
+          <span class="error-message" *ngIf="cotizaForm.get('placa')?.invalid && cotizaForm.get('placa')?.touched">
+            Por favor ingresa la placa del vehículo
+          </span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary btn-submit">
+          Enviar Cotización al WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
