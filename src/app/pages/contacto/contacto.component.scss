@@ -48,7 +48,8 @@
   }
 }
 
->.credit-highlight {
+/* CORRECCIÓN: Se eliminó el '>' huérfano para evitar el error de Dart Sass */
+.credit-highlight {
   background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.05) 100%);
   border: 2px solid var(--brand-gold);
   border-radius: 12px;
