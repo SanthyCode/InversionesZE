@@ -1,0 +1,128 @@
+<section class="contact-section">
+  <div class="contact-container">
+    <!-- Left Side - Info -->
+    <div class="contact-info">
+      <h2>Contáctanos Ahora</h2>
+      <p class="subtitle">
+        Te ayudamos a conseguir <strong>crédito con cualquiera de nuestras entidades financieras aliadas</strong>. 
+        Incluso si estás <strong>reportado</strong>, tenemos soluciones especiales para ti.
+      </p>
+      
+      <div class="credit-highlight">
+        <h4>🎯 Tu Crédito Vehicular Garantizado</h4>
+        <ul class="credit-features">
+          <li>✅ Acceso a crédito <strong>aunque estés reportado</strong></li>
+          <li>✅ Alianzas con <strong>15+ entidades financieras</strong></li>
+          <li>✅ <strong>Aprobación rápida</strong> en menos de 48 horas</li>
+          <li>✅ <strong>Tasas competitivas</strong> según tu perfil</li>
+          <li>✅ Facilita tu compra de vehículo sin complicaciones</li>
+        </ul>
+      </div>
+
+      <div class="info-items">
+        <div class="info-item">
+          <span class="info-icon">💳</span>
+          <div>
+            <h4>Crédito Flexible</h4>
+            <p>Soluciones para todos, incluso reportados</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">📱</span>
+          <div>
+            <h4>Contacto Directo</h4>
+            <p>+57 350 348 6467</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">⚡</span>
+          <div>
+            <h4>Proceso Rápido</h4>
+            <p>Respuesta en menos de 2 horas</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <span class="info-icon">🏦</span>
+          <div>
+            <h4>Bancos Aliados</h4>
+            <p>15+ entidades financieras disponibles</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side - Form -->
+    <div class="form-container">
+      <form [formGroup]="contactoForm" (ngSubmit)="enviarFormulario()" class="contact-form">
+        <div class="form-group">
+          <label for="nombre">Nombre Completo</label>
+          <input 
+            id="nombre"
+            type="text" 
+            formControlName="nombre"
+            placeholder="Tu nombre completo" 
+            [class.error]="contactoForm.get('nombre')?.invalid && contactoForm.get('nombre')?.touched">
+          <span class="error-msg" *ngIf="contactoForm.get('nombre')?.invalid && contactoForm.get('nombre')?.touched">
+            Campo requerido
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Número de Contacto</label>
+          <input 
+            id="telefono"
+            type="tel" 
+            formControlName="telefono"
+            placeholder="Tu número de teléfono"
+            [class.error]="contactoForm.get('telefono')?.invalid && contactoForm.get('telefono')?.touched">
+          <span class="error-msg" *ngIf="contactoForm.get('telefono')?.invalid && contactoForm.get('telefono')?.touched">
+            Campo requerido
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo Electrónico</label>
+          <input 
+            id="correo"
+            type="email" 
+            formControlName="correo"
+            placeholder="tu@email.com"
+            [class.error]="contactoForm.get('correo')?.invalid && contactoForm.get('correo')?.touched">
+          <span class="error-msg" *ngIf="contactoForm.get('correo')?.invalid && contactoForm.get('correo')?.touched">
+            {{ contactoForm.get('correo')?.errors?.['required'] ? 'Campo requerido' : 'Correo inválido' }}
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="servicio">Tipo de Servicio</label>
+          <select 
+            id="servicio" 
+            formControlName="servicio"
+            [class.error]="contactoForm.get('servicio')?.invalid && contactoForm.get('servicio')?.touched">
+            <option value="">Selecciona un servicio</option>
+            <option value="vender">Quiero Vender Mi Vehículo</option>
+            <option value="comprar">Quiero Comprar un Vehículo</option>
+            <option value="asesoria">Requiero Asesoría</option>
+            <option value="otro">Otro</option>
+          </select>
+          <span class="error-msg" *ngIf="contactoForm.get('servicio')?.invalid && contactoForm.get('servicio')?.touched">
+            Campo requerido
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje (Opcional)</label>
+          <textarea 
+            id="mensaje"
+            formControlName="mensaje"
+            placeholder="Cuéntanos más sobre tu situación..."
+            rows="4"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" [disabled]="contactoForm.invalid">Enviar Formulario</button>
+        
+        <p class="form-note">✓ Te contactaremos en menos de 2 horas</p>
+      </form>
+    </div>
+  </div>
+</section>

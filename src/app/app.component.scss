@@ -1,0 +1,94 @@
+/* FOOTER STYLES */
+.footer {
+  background: linear-gradient(135deg, var(--brand-dark) 0%, rgba(13, 13, 13, 0.95) 100%);
+  color: var(--text-primary);
+  padding-top: 4rem;
+  border-top: 3px solid var(--brand-gold);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  padding: 3rem 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    gap: 2rem;
+  }
+}
+
+.footer-section {
+  h4 {
+    color: var(--brand-gold);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 0.95rem;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    li {
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+
+      a {
+        color: var(--text-secondary);
+        text-decoration: none;
+
+        &:hover {
+          color: var(--brand-gold);
+          transform: translateX(4px);
+          display: inline-block;
+        }
+      }
+
+      &:hover {
+        color: var(--brand-gold);
+        transform: translateX(4px);
+      }
+    }
+  }
+}
+
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+
+  p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+/* Asegurar que app ocupe toda la vista */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+router-outlet {
+  flex: 1;
+}

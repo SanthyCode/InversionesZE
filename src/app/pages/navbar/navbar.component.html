@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Logo -->
+    <div class="logo-section">
+      <img src="assets/logos/Logo Inversiones ZE png 1.png" alt="Inversiones ZE" class="logo-img">
+      <span class="logo-text">Inversiones ZE</span>
+    </div>
+
+    <!-- Toggle Menu -->
+    <button class="menu-btn" (click)="toggleMenu()" [class.active]="menuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="menu" [class.open]="menuOpen">
+      <a routerLink="" (click)="menuOpen = false" class="menu-link">Inicio</a>
+      
+      <a routerLink="contacto" (click)="menuOpen = false" class="menu-link">Contacto</a>
+
+      <button class="theme-btn" (click)="toggleTheme()">
+        <span *ngIf="!isDark">🌙</span>
+        <span *ngIf="isDark">☀️</span>
+      </button>
+    </div>
+  </div>
+</nav>
