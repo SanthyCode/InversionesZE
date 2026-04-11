@@ -30,10 +30,8 @@
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--brand-gold), var(--brand-gold-light), var(--brand-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--brand-gold);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.4);
   animation: fadeInDown 0.8s ease-out;
 
   @media (max-width: 768px) {

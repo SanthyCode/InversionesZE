@@ -20,16 +20,22 @@ export class CotizaSeguroComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   // ⚠️ REEMPLAZA CON TU URL DE GOOGLE APPS SCRIPT
-  private readonly scriptURL = 'https://script.google.com/macros/s/AKfycbz3vMwx1mZQCv8lYRaRbxf78biCQbgLAwdCU9JZDSHR82ybhjSlE3ptEarZTleYbIlWhA/exec';
+  private readonly scriptURL = 'https://script.google.com/macros/s/AKfycbzz836-7vlt8SY4G9oE9XgNHpRXJJgwKoD1iwa6ksknZL9E8Ag-DYU9Wo0KQXD2GpRM/exec';
   private readonly miNumeroWpp = '573016743186';
 
   ngOnInit(): void {
     this.cotizaForm = this.fb.group({
       nombre: ['', Validators.required],
-      cedula: ['', Validators.required],
       celular: ['', Validators.required],
       placa: ['', Validators.required]
     });
+  }
+
+  convertirAMayusculas(fieldName: string): void {
+    const control = this.cotizaForm.get(fieldName);
+    if (control) {
+      control.setValue(control.value.toUpperCase(), { emitEvent: false });
+    }
   }
 
   enviarFormulario(): void {
@@ -57,7 +63,6 @@ export class CotizaSeguroComponent implements OnInit {
     // Construir mensaje para WhatsApp
     const mensajeWpp = `¡Hola! Solicito una cotización de seguro todo riesgo:
 *Nombre:* ${data.nombre}
-*Cédula:* ${data.cedula}
 *Celular:* ${data.celular}
 *Placa del Vehículo:* ${data.placa}`;
 

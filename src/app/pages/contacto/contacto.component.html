@@ -71,7 +71,7 @@
           <label for="telefono">Número de Contacto</label>
           <input 
             id="telefono"
-            type="tel" 
+            type="number" 
             formControlName="telefono"
             placeholder="Tu número de teléfono"
             [class.error]="contactoForm.get('telefono')?.invalid && contactoForm.get('telefono')?.touched">

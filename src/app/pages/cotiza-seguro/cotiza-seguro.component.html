@@ -72,27 +72,11 @@
           </span>
         </div>
 
-        <!-- Cédula -->
-        <div class="form-group">
-          <label for="cedula">Número de Cédula *</label>
-          <input
-            type="text"
-            id="cedula"
-            formControlName="cedula"
-            placeholder="Ej: 1234567890"
-            class="form-input"
-            [class.error]="cotizaForm.get('cedula')?.invalid && cotizaForm.get('cedula')?.touched"
-          />
-          <span class="error-message" *ngIf="cotizaForm.get('cedula')?.invalid && cotizaForm.get('cedula')?.touched">
-            Por favor ingresa tu número de cédula
-          </span>
-        </div>
-
         <!-- Celular -->
         <div class="form-group">
           <label for="celular">Celular *</label>
           <input
-            type="tel"
+            type="number"
             id="celular"
             formControlName="celular"
             placeholder="Ej: 3001234567"
@@ -114,6 +98,8 @@
             placeholder="Ej: ABC-123"
             class="form-input"
             [class.error]="cotizaForm.get('placa')?.invalid && cotizaForm.get('placa')?.touched"
+            (input)="convertirAMayusculas('placa')"
+            style="text-transform: uppercase;"
           />
           <span class="error-message" *ngIf="cotizaForm.get('placa')?.invalid && cotizaForm.get('placa')?.touched">
             Por favor ingresa la placa del vehículo
