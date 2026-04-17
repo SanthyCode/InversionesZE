@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="250" height="250">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A57314" />
+      <stop offset="25%" stop-color="#FDF1A9" />
+      <stop offset="50%" stop-color="#C5932E" />
+      <stop offset="75%" stop-color="#EED575" />
+      <stop offset="100%" stop-color="#8B5E05" />
+    </linearGradient>
+    
+    <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="10" stdDeviation="15" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <path d="M512,0 C229.2,0 0,229.2 0,512 C0,766 185.3,976.4 429.7,1016.9 V660.3 H300.4 V512 H429.7 V398.6 C429.7,270.9 505.6,200.6 620,200.6 C675.6,200.6 733.8,210.5 733.8,210.5 V335.5 H669.7 C606.6,335.5 586.9,374.7 586.9,415.8 V512 H729.1 L706.4,660.3 H586.9 V1016.9 C838.7,976.4 1024,766 1024,512 C1024,229.2 794.8,0 512,0 Z" 
+        fill="url(#goldGradient)" 
+        filter="url(#dropShadow)" />
+</svg>
