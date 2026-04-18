@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-
-declare var fbq: any;
-declare var ttq: any;
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PixelService } from '../../services/pixel.service';
 
 @Component({
   selector: 'app-contacto',
@@ -17,13 +13,21 @@ declare var ttq: any;
 export class ContactoComponent implements OnInit {
   contactoForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  // ⚠️ IDs de tus Píxeles
+  private readonly PIXEL_FB_CONTACTO = '971546888680397';
+  // private readonly PIXEL_TT_CONTACTO = 'TU_ID_DE_TIKTOK'; // Descomenta cuando lo tengas
 
-  // ⚠️ REEMPLAZA CON TU URL DE GOOGLE APPS SCRIPT
+  // Tus credenciales
   private readonly scriptURL = 'https://script.google.com/macros/s/AKfycbz3vMwx1mZQCv8lYRaRbxf78biCQbgLAwdCU9JZDSHR82ybhjSlE3ptEarZTleYbIlWhA/exec';
   private readonly miNumeroWpp = '573503486467';
 
+  constructor(
+    private fb: FormBuilder,
+    private pixelService: PixelService
+  ) { }
+
   ngOnInit(): void {
+    // 1. Inicializamos el formulario
     this.contactoForm = this.fb.group({
       nombre: ['', Validators.required],
       telefono: ['', Validators.required],
@@ -31,9 +35,12 @@ export class ContactoComponent implements OnInit {
       servicio: ['', Validators.required],
       mensaje: ['']
     });
+
+    // 2. Registramos la visita a la página para este píxel exacto
+    this.pixelService.registrarVistaPagina(this.PIXEL_FB_CONTACTO);
   }
 
-enviarFormulario(): void {
+  enviarFormulario(): void {
     if (this.contactoForm.invalid) {
       this.contactoForm.markAllAsTouched();
       alert('Por favor completa todos los campos obligatorios');
@@ -64,7 +71,7 @@ ${data.mensaje ? `*Mensaje:* ${data.mensaje}` : ''}`;
 
     const urlWhatsApp = `https://wa.me/${this.miNumeroWpp}?text=${encodeURIComponent(mensajeWpp)}`;
 
-    // 🔥 TRUCO ANTI-BLOQUEO: Abrimos la pestaña en blanco antes de la petición async
+    // 🔥 TRUCO ANTI-BLOQUEO
     const nuevaPestana = window.open('about:blank', '_blank');
 
     // Enviar a Google Sheets
@@ -74,19 +81,17 @@ ${data.mensaje ? `*Mensaje:* ${data.mensaje}` : ''}`;
       mode: 'no-cors' 
     })
       .then(() => {
-        // Píxeles
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-        if (typeof ttq !== 'undefined') ttq.track('SubmitForm');
+        // 🚀 Disparar evento de Lead mediante el servicio
+        this.pixelService.rastrearEvento(this.PIXEL_FB_CONTACTO, 'Lead', 'SubmitForm');
 
-        // Redirigir la pestaña que abrimos a WhatsApp
+        // Redirigir la pestaña a WhatsApp
         if (nuevaPestana) {
           nuevaPestana.location.href = urlWhatsApp;
         } else {
-          // Fallback por si el navegador fue muy estricto y bloqueó el window.open
           window.location.href = urlWhatsApp;
         }
         
-        // Limpiamos el formulario en tu página original
+        // Limpiar formulario
         this.contactoForm.reset();
       })
       .catch(error => {
