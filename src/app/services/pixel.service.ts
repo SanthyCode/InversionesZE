@@ -14,19 +14,24 @@ export class PixelService {
   /**
    * Inicializa los píxeles específicos y registra una vista de página.
    */
-  registrarVistaPagina(fbPixelId: string, ttPixelId?: string): void {
-    // Facebook
-    if (typeof fbq !== 'undefined') {
-      fbq('init', fbPixelId);
-      fbq('trackSingle', fbPixelId, 'PageView');
-    }
+registrarVistaPagina(fbPixelId: string, ttPixelId?: string): void {
+    // Le damos 500 milisegundos a Meta para que se instale en el navegador
+    setTimeout(() => {
+      // Facebook
+      if (typeof fbq !== 'undefined') {
+        fbq('init', fbPixelId);
+        fbq('trackSingle', fbPixelId, 'PageView');
+        console.log('Píxel de Meta inicializado correctamente'); // <- Agrega esto para depurar
+      } else {
+        console.warn('El script de Meta fue bloqueado por el navegador');
+      }
 
-    // TikTok (Opcional, solo si pasas el ID)
-    if (typeof ttq !== 'undefined' && ttPixelId) {
-      // Nota: TikTok suele usar load en lugar de init
-      ttq.load(ttPixelId); 
-      ttq.page(); 
-    }
+      // TikTok
+      if (typeof ttq !== 'undefined' && ttPixelId) {
+        ttq.load(ttPixelId); 
+        ttq.page(); 
+      }
+    }, 500);
   }
 
   /**
